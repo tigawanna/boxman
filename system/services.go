@@ -1,11 +1,11 @@
 package system
 
 import (
-    "bufio"
-    "bytes"
-    "log"
-    "os/exec"
-    "strings"
+	"bufio"
+	"bytes"
+	"log"
+	"os/exec"
+	"strings"
 )
 
 type Service struct {
@@ -54,3 +54,62 @@ func GetSystemDServices(partialName string) []Service {
     }
     return services
 }
+
+// type SystemdServiceConfig struct {
+//     // Unit section
+//     Unit struct {
+//         Description string
+//     }
+
+//     // Service section
+//     Service struct {
+//         Type           string
+//         User           string
+//         Group          string
+//         LimitNOFILE    int
+//         Restart        string
+//         RestartSec     string
+//         StandardOutput string
+//         StandardError  string
+//         ExecStart      string
+//     }
+
+//     // Install section
+//     Install struct {
+//         WantedBy string
+//     }
+// }
+
+// func NewServiceConfig() SystemdServiceConfig {
+//     return SystemdServiceConfig{
+//         Unit: struct{ Description string }{
+//             Description: "",
+//         },
+//         Service: struct {
+//             Type           string
+//             User           string
+//             Group          string
+//             LimitNOFILE    int
+//             Restart        string
+//             RestartSec     string
+//             StandardOutput string
+//             StandardError  string
+//             ExecStart      string
+//         }{
+//             Type:           "simple",
+//             User:           "root",
+//             Group:          "root",
+//             LimitNOFILE:    4096,
+//             Restart:        "always",
+//             RestartSec:     "5s",
+//             StandardOutput: "append:/root/pb/std.log",
+//             StandardError:  "append:/root/pb/std.log",
+//             ExecStart:      "/root/pb/pocketbase serve yourdomain.com",
+//         },
+//         Install: struct{ WantedBy string }{
+//             WantedBy: "multi-user.target",
+//         },
+//     }
+// }
+
+
