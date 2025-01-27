@@ -173,7 +173,7 @@ func NewSystemdServiceConfig(serviceName, baseDir, execCommand string, opts *Con
 	}
 }
 
-func (c SystemdServiceConfig) ToString() string {
+func (c SystemdServiceConfig) ToString() (string, error) {
 	var sb strings.Builder
 
 	// [Unit] section
@@ -196,7 +196,7 @@ func (c SystemdServiceConfig) ToString() string {
 	sb.WriteString("[Install]\n")
 	sb.WriteString(fmt.Sprintf("WantedBy=%s\n", c.Install.WantedBy))
 
-	return sb.String()
+	return sb.String(),nil
 }
 
 

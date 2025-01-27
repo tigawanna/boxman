@@ -29,7 +29,11 @@ func main() {
 			},
 		)
 		// fmt.Println(config.ToString())
-		return c.String(http.StatusOK, config.ToString())
+		content, err := config.ToString()
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, err)
+		}
+		return c.String(http.StatusOK, content)
 	})
 	e.POST("/service/new", func(c echo.Context) error {
 		name := c.FormValue("name")
@@ -55,7 +59,11 @@ func main() {
 			},
 		)
 		// fmt.Println(config.ToString())
-		return c.String(http.StatusOK, config.ToString())
+		content, err := config.ToString()
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, err)
+		}
+		return c.String(http.StatusOK, content)
 	})
 	e.Logger.Fatal(e.Start(":1323"))
 }
